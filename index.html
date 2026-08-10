@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>303FERGAL — Entouré de Surprises</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=UnifrakturCook:wght@700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#07070C;
+    --surface:#121319;
+    --surface-2:#191A22;
+    --navy:#141C33;
+    --navy-deep:#0B0F1E;
+    --chrome-1:#F5F5F7;
+    --chrome-2:#B7B8BC;
+    --chrome-3:#5B5C61;
+    --text:#ECECEF;
+    --muted:#87888D;
+    --hairline:rgba(160,175,220,0.11);
+    --header-h: 108px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth; scroll-padding-top:var(--header-h);}
+  body{background:var(--void); color:var(--text); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden;}
+  ::selection{background:var(--chrome-1); color:var(--void);}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px; position:relative; z-index:1;}
+  section{position:relative; z-index:1; overflow:hidden;}
+  :focus-visible{outline:2px solid var(--chrome-1); outline-offset:3px;}
+  img,svg{display:block; max-width:100%;}
+
+  /* ---------- GRAIN OVERLAY (poster texture) ---------- */
+  .grain-overlay{position:fixed; inset:0; z-index:3; pointer-events:none; opacity:.05; mix-blend-mode:overlay;}
+
+  /* ---------- SHARD DECORATIONS (gothic metal blade motif) ---------- */
+  .shard{position:absolute; clip-path:polygon(50% 0%, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 38%); mix-blend-mode:screen; pointer-events:none;}
+  .shard.s-chrome{background:linear-gradient(135deg, rgba(230,234,245,0.22), rgba(60,66,90,0.04));}
+  .shard.s-navy{background:linear-gradient(135deg, rgba(140,160,230,0.16), rgba(20,25,45,0.02));}
+
+  /* ---------- BG SWEEP (traveling sheen, all sections) ---------- */
+  .section-bg::after{
+    content:''; position:absolute; top:-60%; left:-70%; width:55%; height:220%;
+    background:linear-gradient(75deg, transparent, rgba(205,214,255,0.05), transparent);
+    transform:rotate(8deg); animation:bgSweep 17s ease-in-out infinite;
+  }
+  @keyframes bgSweep{0%{transform:translateX(-10%) rotate(8deg);}50%{transform:translateX(180%) rotate(8deg);}100%{transform:translateX(-10%) rotate(8deg);}}
+
+  /* ---------- SECTION DIVIDER ORNAMENT ---------- */
+  .ornament-divider{display:flex; align-items:center; gap:12px; width:100%; max-width:180px; margin-bottom:26px;}
+  .ornament-divider::before,.ornament-divider::after{content:'';flex:1; height:1px; background:linear-gradient(90deg, transparent, var(--chrome-2));}
+  .ornament-divider::after{background:linear-gradient(90deg, var(--chrome-2), transparent);}
+  .ornament-divider .diamond{width:6px; height:6px; background:var(--chrome-1); transform:rotate(45deg); box-shadow:0 0 8px rgba(200,210,255,.4);}
+
+  /* ---------- PER-SECTION BACKGROUNDS ---------- */
+  .section-bg{position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden;}
+
+  .bg-brushed{
+    background-image: repeating-linear-gradient(112deg, rgba(210,220,255,0.045) 0px, rgba(210,220,255,0.045) 1px, transparent 1px, transparent 15px),
+      radial-gradient(ellipse at 50% 0%, rgba(35,50,100,0.16), transparent 60%);
+  }
+  .bg-quiet{ background:radial-gradient(ellipse at center, rgba(35,50,100,0.10), transparent 60%); }
+  .bg-plate{
+    background-image: radial-gradient(circle at 18% 22%, rgba(45,60,120,0.14), transparent 42%),
+      radial-gradient(circle at 82% 78%, rgba(255,255,255,0.04), transparent 42%),
+      linear-gradient(180deg, rgba(35,50,100,0.05), transparent 30%);
+  }
+  .bg-blueprint{
+    background-image: linear-gradient(rgba(200,212,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,212,255,0.06) 1px, transparent 1px);
+    background-size:46px 46px;
+    -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 82%);
+    mask-image: radial-gradient(ellipse at center, black 35%, transparent 82%);
+  }
+  .bg-spotlight{ background:radial-gradient(ellipse at 50% 0%, rgba(45,60,120,0.18), transparent 55%); }
+  .bg-burst{ background:radial-gradient(circle at 50% 55%, rgba(45,60,120,0.20), transparent 60%); }
+
+  /* ---------- HEADER ---------- */
+  header.site-header{position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(7,8,14,0.80); backdrop-filter:blur(16px); border-bottom:1px solid var(--hairline);}
+  .brand-row{display:flex; align-items:center; justify-content:center; padding:16px 32px 10px;}
+  .brand-mini{display:flex; align-items:center; gap:10px; font-family:'Cormorant Garamond', serif; font-weight:700; font-size:14px; letter-spacing:0.18em;}
+  .brand-mark{width:14px; height:14px; border-radius:50%; background:conic-gradient(from 200deg, var(--chrome-1), var(--navy), var(--chrome-1), var(--chrome-2), var(--chrome-1)); box-shadow:inset 0 0 4px rgba(0,0,0,.6);}
+  nav.nav-row{border-top:1px solid var(--hairline);}
+  .nav-inner{display:flex; justify-content:center; gap:0; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none;}
+  .nav-inner::-webkit-scrollbar{display:none;}
+  .nav-inner a{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--muted); padding:14px 20px; white-space:nowrap; position:relative; transition:color .25s ease;
+  }
+  .nav-inner a::after{content:''; position:absolute; left:20px; right:20px; bottom:6px; height:1px; background:var(--chrome-1); transform:scaleX(0); transition:transform .25s ease; transform-origin:left;}
+  .nav-inner a:hover{color:var(--text);}
+  .nav-inner a:hover::after{transform:scaleX(1);}
+
+  /* ---------- HERO ---------- */
+  .hero{min-height:100svh; display:flex; align-items:center; justify-content:center; padding-top:var(--header-h); position:relative; overflow:hidden;}
+  .hero-bg{position:absolute; inset:0; z-index:0; background:radial-gradient(ellipse at 50% 50%, var(--navy-deep), var(--void) 70%); overflow:hidden;}
+  .liquid-stage{position:absolute; inset:-15%; filter:blur(28px) contrast(34) brightness(1.04);}
+  .liquid-blob{position:absolute; border-radius:50%; background:radial-gradient(circle at 35% 30%, #f4f4f6, #b9bac0 26%, #6a6b70 50%, #232840 74%, #0b0d1a 100%);}
+  .lb1{width:34%; height:34%; top:8%; left:6%; animation:lbA 22s ease-in-out infinite;}
+  .lb2{width:30%; height:30%; top:52%; left:58%; animation:lbB 26s ease-in-out infinite;}
+  .lb3{width:26%; height:26%; top:12%; left:60%; animation:lbC 19s ease-in-out infinite;}
+  .lb4{width:22%; height:22%; top:60%; left:14%; animation:lbA 24s ease-in-out infinite reverse;}
+  .lb5{width:18%; height:18%; top:34%; left:38%; animation:lbB 17s ease-in-out infinite reverse;}
+  .lb6{width:20%; height:20%; top:6%; left:38%; animation:lbC 29s ease-in-out infinite;}
+  @keyframes lbA{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(10%,14%) scale(1.2);}}
+  @keyframes lbB{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-12%,-9%) scale(0.85);}}
+  @keyframes lbC{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-8%,11%) scale(1.15);}}
+  .hero-sheen{position:absolute; inset:-20%; background:radial-gradient(circle at 30% 30%, rgba(210,220,255,0.12), transparent 55%); mix-blend-mode:screen; animation:sheenMove 16s ease-in-out infinite;}
+  @keyframes sheenMove{0%,100%{transform:translate(0,0);}50%{transform:translate(10%,8%);}}
+  .hero-vignette{position:absolute; inset:0; background:radial-gradient(ellipse at center, transparent 28%, var(--navy-deep) 75%, var(--void) 96%);}
+
+  .hero-content{position:relative; z-index:2; text-align:center; padding:0 24px;}
+  .brand-title{
+    font-family:'Cormorant Garamond', serif; font-weight:700; letter-spacing:0.04em;
+    font-size:clamp(58px, 13vw, 178px); line-height:0.95;
+    background:linear-gradient(180deg, #ffffff 0%, #f0f0f2 10%, #c3c4c8 26%, #6d6e73 42%, #1a1a1c 50%, #6d6e73 58%, #c3c4c8 74%, #f0f0f2 90%, #ffffff 100%);
+    background-size:100% 220%;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:chromeSweepV 10s ease-in-out infinite;
+    text-shadow:
+      1px 1px 0 rgba(255,255,255,.55),
+      -1px -1px 0 rgba(0,0,0,.5),
+      2px 2px 0 rgba(130,130,134,.85),
+      3px 3px 0 rgba(95,95,99,.8),
+      4px 4px 0 rgba(55,55,59,.75),
+      5px 5px 2px rgba(0,0,0,.5),
+      0 12px 26px rgba(0,0,0,.55);
+  }
+  @keyframes chromeSweepV{0%{background-position:0% 0%;}50%{background-position:0% 100%;}100%{background-position:0% 0%;}}
+  @keyframes chromeSweep{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+  .hero-tag{margin-top:22px; font-family:'IBM Plex Mono', monospace; font-size:clamp(12px,1.6vw,15px); letter-spacing:0.32em; color:var(--chrome-2); text-transform:uppercase;}
+  .hero-est{margin-top:12px; font-size:11px; letter-spacing:0.2em; color:var(--muted); text-transform:uppercase;}
+  .scroll-hint{position:absolute; bottom:28px; left:50%; transform:translateX(-50%); font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.2em; color:var(--muted); z-index:2;}
+
+  /* ---------- SECTION GENERIC ---------- */
+  .section{padding:120px 0;}
+  .section-tight{padding:90px 0;}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.2em; color:var(--muted); text-transform:uppercase; display:flex; align-items:center; gap:10px; margin-bottom:22px;}
+  .eyebrow::before{content:''; width:20px; height:1px; background:var(--chrome-3);}
+  .section-title{font-family:'Cormorant Garamond', serif; font-weight:600; font-size:clamp(26px,3.4vw,40px); color:var(--chrome-1); letter-spacing:0.02em;}
+
+  /* HOME (minimal) */
+  .home-block{max-width:620px;}
+  .home-block p{color:var(--muted); font-size:15px; line-height:1.8; margin-top:18px;}
+
+  /* NOBIS (placeholder) */
+  .empty-frame{border:1px dashed var(--hairline); border-radius:18px; padding:60px 30px; text-align:center; max-width:620px;}
+  .empty-frame .mono{font-size:11px; letter-spacing:.16em; color:var(--muted); text-transform:uppercase;}
+
+  /* HISTORIA accordion */
+  .historia-list{border-top:1px solid var(--hairline); max-width:820px;}
+  details.historia-item{border-bottom:1px solid var(--hairline);}
+  details.historia-item summary{
+    list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between;
+    padding:26px 4px; font-family:'Cormorant Garamond', serif; font-size:clamp(18px,2.4vw,26px); letter-spacing:0.06em; color:var(--chrome-1);
+  }
+  details.historia-item summary::-webkit-details-marker{display:none;}
+  .historia-chev{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--muted); transition:transform .3s ease;}
+  details[open] .historia-chev{transform:rotate(45deg);}
+  .historia-body{padding:0 4px 30px; max-width:600px; color:var(--muted); font-size:14.5px; line-height:1.8;}
+
+  /* DOMUS / GRADUS shared */
+  .dossier-intro{max-width:640px; color:var(--muted); font-size:15px; line-height:1.8; margin-bottom:50px;}
+  .dossier-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:800px){ .dossier-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .dossier-grid{grid-template-columns:1fr;} }
+  .dossier-card{background:var(--surface); border:1px solid var(--hairline); border-radius:18px; padding:26px; transition:border-color .3s ease, transform .3s ease;}
+  .dossier-card:hover{border-color:var(--chrome-3); transform:translateY(-3px);}
+  .dossier-tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.14em; color:var(--muted); text-transform:uppercase;}
+  .dossier-name{font-family:'Cormorant Garamond', serif; font-size:17px; margin:12px 0 8px; color:var(--text);}
+  .dossier-desc{font-size:13px; color:var(--muted); line-height:1.6;}
+
+  /* HIERARCHY */
+  .hier-intro{max-width:760px; color:var(--muted); font-size:15px; line-height:1.85; margin-bottom:70px;}
+  .hier-tier{border-top:1px solid var(--hairline); padding:60px 0;}
+  .hier-tier:last-child{padding-bottom:0;}
+  .hier-tier-title{font-family:'Cormorant Garamond', serif; font-weight:600; font-size:clamp(22px,2.8vw,32px); color:var(--chrome-1); margin-bottom:16px;}
+  .hier-tier-desc{max-width:640px; color:var(--muted); font-size:14.5px; line-height:1.8; margin-bottom:28px;}
+  details.holder-toggle summary{
+    list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    padding:12px 22px; border:1px solid var(--hairline); border-radius:100px; color:var(--text);
+    transition:border-color .25s ease, background .25s ease;
+  }
+  details.holder-toggle summary::-webkit-details-marker{display:none;}
+  details.holder-toggle summary:hover{border-color:var(--chrome-2); background:rgba(255,255,255,.03);}
+  details.holder-toggle[open] summary .chev{transform:rotate(180deg);}
+  .chev{transition:transform .3s ease; font-size:10px;}
+  .holder-grid{margin-top:34px; display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:22px;}
+  .portrait-card{
+    background:var(--surface); border:1px solid var(--hairline); border-radius:14px; padding:10px;
+    text-align:center; transition:border-color .3s ease, transform .3s ease;
+  }
+  .portrait-card:hover{border-color:var(--chrome-2); transform:translateY(-4px);}
+  .portrait-frame{
+    width:100%; aspect-ratio:4/5; border-radius:9px; position:relative;
+    background:conic-gradient(from 120deg, var(--chrome-1), var(--navy), var(--chrome-3), var(--chrome-2), var(--chrome-1));
+    padding:2px; margin-bottom:14px;
+  }
+  .portrait-frame .inner{
+    width:100%; height:100%; border-radius:7px; background:var(--surface-2);
+    display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+  }
+  .portrait-frame .id-tag{
+    position:absolute; top:8px; left:8px; font-family:'IBM Plex Mono',monospace; font-size:9px;
+    letter-spacing:.05em; color:var(--chrome-2); border:1px solid rgba(255,255,255,.28);
+    padding:2px 6px; border-radius:3px; background:rgba(0,0,0,.45);
+  }
+  .portrait-frame svg{width:32px; height:32px; opacity:.4;}
+  .portrait-name{font-size:12.5px; font-weight:600; color:var(--text);}
+  .portrait-role{font-size:10.5px; color:var(--muted); margin-top:3px;}
+  .portrait-user{font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--chrome-3); margin-top:4px;}
+
+  /* UNIT */
+  .unit-block{display:flex; flex-direction:column; align-items:center; text-align:center; padding:60px 0;}
+  .unit-block p{color:var(--muted); font-size:14px; max-width:420px; margin-bottom:34px; line-height:1.7;}
+  .btn-chrome{
+    display:inline-flex; align-items:center; gap:10px;
+    background:linear-gradient(135deg, var(--chrome-1), var(--chrome-2) 55%, var(--chrome-1));
+    color:#0A0A0B; font-weight:600; font-size:14px; letter-spacing:.03em;
+    padding:16px 32px; border-radius:100px;
+    box-shadow:0 0 0 1px rgba(255,255,255,.15) inset, 0 14px 30px -14px rgba(255,255,255,.3);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-chrome:hover{transform:translateY(-2px); box-shadow:0 0 0 1px rgba(255,255,255,.25) inset, 0 18px 36px -14px rgba(255,255,255,.4);}
+
+  /* FOOTER */
+  footer.site-footer{position:relative; z-index:1; padding:70px 0 40px; border-top:1px solid var(--hairline); margin-top:60px;}
+  .footer-divider{height:1px; width:100%; margin-bottom:50px; background:linear-gradient(90deg, transparent, var(--navy) 15%, var(--chrome-2), var(--navy) 85%, transparent); opacity:.55;}
+  .footer-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:40px; margin-bottom:50px;}
+  .footer-brand{font-family:'Cormorant Garamond', serif; font-weight:700; font-size:22px; letter-spacing:.1em; display:flex; align-items:center; gap:10px;}
+  .footer-tag{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--muted); margin-top:10px; text-transform:uppercase;}
+  .footer-nav{display:flex; flex-wrap:wrap; gap:20px 28px;}
+  .footer-nav a{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; transition:color .25s ease;}
+  .footer-nav a:hover{color:var(--text);}
+  .footer-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--muted); letter-spacing:.06em;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute;">
+  <filter id="grainFilter">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" result="noise"/>
+    <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0"/>
+  </filter>
+</svg>
+<div class="grain-overlay" style="filter:url(#grainFilter);"></div>
+
+<header class="site-header">
+  <div class="brand-row">
+    <div class="brand-mini"><span class="brand-mark"></span>303FERGAL</div>
+  </div>
+  <nav class="nav-row">
+    <div class="wrap nav-inner">
+      <a href="#home">Home</a>
+      <a href="#nobis">Nobis</a>
+      <a href="#historia">Historia</a>
+      <a href="#domus">Domus</a>
+      <a href="#gradus">Gradus</a>
+      <a href="#hierarchy">Hierarchy</a>
+      <a href="#unit">Unit</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="liquid-stage">
+      <div class="liquid-blob lb1"></div>
+      <div class="liquid-blob lb2"></div>
+      <div class="liquid-blob lb3"></div>
+      <div class="liquid-blob lb4"></div>
+      <div class="liquid-blob lb5"></div>
+      <div class="liquid-blob lb6"></div>
+    </div>
+    <div class="hero-sheen"></div>
+    <div class="hero-vignette"></div>
+  </div>
+  <div class="hero-content">
+    <h1 class="brand-title">303FERGAL</h1>
+    <div class="hero-tag">Entouré de Surprises</div>
+    <div class="hero-est mono">Est. 2019</div>
+    <div class="ornament-divider" style="margin:22px auto 0;"><span class="diamond"></span></div>
+  </div>
+  <div class="scroll-hint mono">SCROLL</div>
+</section>
+
+<!-- ================= HOME ================= -->
+<section class="section-tight" id="home">
+  <div class="section-bg bg-brushed">
+    <div class="shard s-chrome" style="width:120px; height:120px; top:-30px; right:8%; transform:rotate(24deg);"></div>
+    <div class="shard s-navy" style="width:70px; height:70px; bottom:10%; left:4%; transform:rotate(-16deg);"></div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow">Home</div>
+    <div class="home-block">
+      <h2 class="section-title">Apa itu 303Fergal?</h2>
+      <p>303Fergal adalah komunitas kami — ruang yang dibangun sejak 2019 dan terus berjalan sampai sekarang. Halaman ini jadi tempat mencatat siapa kami, bagaimana struktur di dalamnya berjalan, dan apa yang pernah terjadi sepanjang perjalanannya.</p>
+      <p>Penjelasan lebih lengkap menyusul di sini.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NOBIS ================= -->
+<section class="section-tight" id="nobis">
+  <div class="section-bg bg-quiet">
+    <div class="shard s-navy" style="width:90px; height:90px; top:20%; right:12%; transform:rotate(10deg);"></div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow">Nobis</div>
+    <div class="empty-frame">
+      <div class="mono">Konten segera hadir</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HISTORIA ================= -->
+<section class="section" id="historia">
+  <div class="section-bg bg-plate">
+    <div class="shard s-chrome" style="width:100px; height:100px; top:6%; left:6%; transform:rotate(-20deg);"></div>
+    <div class="shard s-navy" style="width:150px; height:150px; bottom:-40px; right:2%; transform:rotate(30deg);"></div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow">Historia</div>
+    <h2 class="section-title" style="margin-bottom:50px;">Empat babak perjalanan.</h2>
+    <div class="historia-list">
+      <details class="historia-item">
+        <summary>EXORDIUM <span class="historia-chev mono">+</span></summary>
+        <div class="historia-body">Catatan untuk babak ini akan segera ditambahkan.</div>
+      </details>
+      <details class="historia-item">
+        <summary>MEDIOCRIS <span class="historia-chev mono">+</span></summary>
+        <div class="historia-body">Catatan untuk babak ini akan segera ditambahkan.</div>
+      </details>
+      <details class="historia-item">
+        <summary>CRISIUM <span class="historia-chev mono">+</span></summary>
+        <div class="historia-body">Catatan untuk babak ini akan segera ditambahkan.</div>
+      </details>
+      <details class="historia-item">
+        <summary>POSTREMUS <span class="historia-chev mono">+</span></summary>
+        <div class="historia-body">Catatan untuk babak ini akan segera ditambahkan.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DOMUS ================= -->
+<section class="section" id="domus">
+  <div class="section-bg bg-blueprint">
+    <div class="shard s-chrome" style="width:110px; height:110px; top:-20px; right:10%; transform:rotate(15deg);"></div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow">Domus</div>
+    <h2 class="section-title" style="margin-bottom:26px;">Basecamp kami.</h2>
+    <p class="dossier-intro">Tempat-tempat yang jadi markas kegiatan 303Fergal. Detail tiap lokasi menyusul.</p>
+    <div class="dossier-grid" id="domusGrid"></div>
+  </div>
+</section>
+
+<!-- ================= GRADUS ================= -->
+<section class="section" id="gradus">
+  <div class="section-bg bg-blueprint">
+    <div class="shard s-navy" style="width:100px; height:100px; bottom:6%; left:8%; transform:rotate(-24deg);"></div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow">Gradus</div>
+    <h2 class="section-title" style="margin-bottom:26px;">Tingkatan dalam organisasi.</h2>
+    <p class="dossier-intro">Jenjang yang berlaku di dalam struktur 303Fergal. Deskripsi tiap tingkat menyusul.</p>
+    <div class="dossier-grid" id="gradusGrid"></div>
+  </div>
+</section>
+
+<!-- ================= HIERARCHY ================= -->
+<section class="section" id="hierarchy">
+  <div class="section-bg bg-spotlight">
+    <div class="shard s-chrome" style="width:90px; height:90px; top:4%; left:10%; transform:rotate(20deg);"></div>
+    <div class="shard s-chrome" style="width:90px; height:90px; top:4%; right:10%; transform:rotate(-20deg);"></div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow">Hierarchy</div>
+    <h2 class="section-title" style="margin-bottom:26px;">The Phantom Hierarchy.</h2>
+    <p class="hier-intro">The Phantom Hierarchy operates under a dynamic ranking system, members may be promoted or demoted based on their qualifications like activity, attitude, performance, and other relevant considerations.</p>
+
+    <div class="hier-tier">
+      <div class="hier-tier-title">High Phantomhive</div>
+      <p class="hier-tier-desc">Deskripsi tingkatan ini akan segera ditambahkan.</p>
+      <details class="holder-toggle">
+        <summary>Current Holder <span class="chev">▾</span></summary>
+        <div class="holder-grid" data-count="4"></div>
+      </details>
+    </div>
+
+    <div class="hier-tier">
+      <div class="hier-tier-title">Phantomhive</div>
+      <p class="hier-tier-desc">Deskripsi tingkatan ini akan segera ditambahkan.</p>
+      <details class="holder-toggle">
+        <summary>Current Holder <span class="chev">▾</span></summary>
+        <div class="holder-grid" data-count="9"></div>
+      </details>
+    </div>
+
+    <div class="hier-tier">
+      <div class="hier-tier-title">Inferior-Phantomhive</div>
+      <p class="hier-tier-desc">Deskripsi tingkatan ini akan segera ditambahkan.</p>
+      <details class="holder-toggle">
+        <summary>Current Holder <span class="chev">▾</span></summary>
+        <div class="holder-grid" data-count="19"></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= UNIT ================= -->
+<section class="section-tight" id="unit">
+  <div class="section-bg bg-burst">
+    <div class="shard s-navy" style="width:160px; height:160px; top:12%; left:16%; transform:rotate(12deg);"></div>
+    <div class="shard s-chrome" style="width:130px; height:130px; bottom:8%; right:14%; transform:rotate(-18deg);"></div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow">Unit</div>
+    <div class="unit-block">
+      <h2 class="section-title">Ikuti Unit kami.</h2>
+      <p>Semua kegiatan dan dokumentasi Unit dari 303Fergal ada di Instagram resmi kami.</p>
+      <a href="#" target="_blank" rel="noopener" class="btn-chrome">
+        Kunjungi Instagram Unit
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0A0A0B" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-divider"></div>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand"><span class="brand-mark"></span>303FERGAL</div>
+        <div class="footer-tag">Entouré de Surprises · Est. 2019</div>
+      </div>
+      <div class="footer-nav">
+        <a href="#home">Home</a>
+        <a href="#nobis">Nobis</a>
+        <a href="#historia">Historia</a>
+        <a href="#domus">Domus</a>
+        <a href="#gradus">Gradus</a>
+        <a href="#hierarchy">Hierarchy</a>
+        <a href="#unit">Unit</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 303FERGAL</span>
+      <span>ALL RIGHTS RESERVED</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const personIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#9A9BA1" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>';
+
+  function buildHolders(container){
+    const count = parseInt(container.dataset.count, 10);
+    let html = '';
+    for(let i=1;i<=count;i++){
+      html += `
+        <div class="portrait-card">
+          <div class="portrait-frame">
+            <div class="inner">
+              <span class="id-tag">Nº${String(i).padStart(2,'0')}</span>
+              ${personIcon}
+            </div>
+          </div>
+          <div class="portrait-name">Nama Member</div>
+          <div class="portrait-role">Jabatan</div>
+          <div class="portrait-user mono">@username</div>
+        </div>`;
+    }
+    container.innerHTML = html;
+  }
+  document.querySelectorAll('.holder-grid').forEach(buildHolders);
+
+  function buildDossier(container, count, tagPrefix){
+    let html = '';
+    for(let i=1;i<=count;i++){
+      html += `
+        <div class="dossier-card">
+          <div class="dossier-tag">${tagPrefix} ${String(i).padStart(2,'0')}</div>
+          <div class="dossier-name">Nama</div>
+          <div class="dossier-desc">Deskripsi akan ditambahkan.</div>
+        </div>`;
+    }
+    container.innerHTML = html;
+  }
+  buildDossier(document.getElementById('domusGrid'), 3, 'SITE');
+  buildDossier(document.getElementById('gradusGrid'), 3, 'RANK');
+
+  // active nav highlight
+  const navLinks = document.querySelectorAll('.nav-inner a');
+  const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href')));
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        const id = '#' + en.target.id;
+        navLinks.forEach(a => a.style.color = a.getAttribute('href')===id ? 'var(--text)' : '');
+      }
+    });
+  }, {rootMargin:'-50% 0px -45% 0px'});
+  sections.forEach(s => s && io.observe(s));
+</script>
+
+</body>
+</html>
