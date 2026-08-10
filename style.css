@@ -793,6 +793,235 @@ nav.nav-row{
 
   mix-blend-mode:screen;
 }
+/* =========================================================
+   SHATTERED GLASS
+   ========================================================= */
+
+.shard{
+  position:absolute;
+
+  pointer-events:none;
+
+  z-index:1;
+
+  opacity:.55;
+
+  mix-blend-mode:screen;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.18),
+      rgba(170,180,205,.055) 35%,
+      transparent 60%
+    );
+
+  border:1px solid rgba(235,240,255,.22);
+
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,.14),
+    0 0 18px rgba(130,150,200,.045);
+
+  clip-path:polygon(
+    50% 0%,
+    61% 27%,
+    100% 17%,
+    76% 48%,
+    94% 100%,
+    51% 70%,
+    18% 100%,
+    27% 58%,
+    0% 38%,
+    37% 30%
+  );
+
+  animation:
+    shardFloat
+    12s
+    ease-in-out
+    infinite;
+}
+
+
+/* =========================================================
+   GLASS VARIATIONS
+   ========================================================= */
+
+.shard.s-chrome{
+  background:
+    linear-gradient(
+      125deg,
+      rgba(255,255,255,.30),
+      rgba(220,225,235,.09) 28%,
+      rgba(80,90,110,.04) 52%,
+      transparent 72%
+    );
+
+  border-color:
+    rgba(255,255,255,.30);
+
+  opacity:.65;
+}
+
+
+.shard.s-navy{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(100,130,190,.18),
+      rgba(40,55,90,.07) 50%,
+      transparent 75%
+    );
+
+  border-color:
+    rgba(105,130,185,.22);
+
+  opacity:.5;
+}
+
+
+/* =========================================================
+   GLASS LIGHT EDGE
+   ========================================================= */
+
+.shard::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+    linear-gradient(
+      125deg,
+      transparent 35%,
+      rgba(255,255,255,.30) 48%,
+      transparent 52%
+    );
+
+  opacity:.5;
+
+  mix-blend-mode:screen;
+}
+
+
+/* =========================================================
+   GLASS MOVEMENT
+   ========================================================= */
+
+@keyframes shardFloat{
+
+  0%,100%{
+    transform:
+      translate3d(0,0,0)
+      rotate(0deg)
+      scale(1);
+
+    opacity:.40;
+  }
+
+  25%{
+    transform:
+      translate3d(8px,-12px,0)
+      rotate(3deg)
+      scale(1.02);
+
+    opacity:.58;
+  }
+
+  50%{
+    transform:
+      translate3d(-5px,8px,0)
+      rotate(-2deg)
+      scale(.97);
+
+    opacity:.48;
+  }
+
+  75%{
+    transform:
+      translate3d(12px,5px,0)
+      rotate(4deg)
+      scale(1.04);
+
+    opacity:.62;
+  }
+
+}
+
+/* =========================================================
+   SHATTERED GLASS POSITIONS
+   ========================================================= */
+
+.shard:nth-of-type(1){
+  width:180px;
+  height:210px;
+  top:12%;
+  left:8%;
+  transform:rotate(18deg);
+}
+
+.shard:nth-of-type(2){
+  width:120px;
+  height:170px;
+  top:24%;
+  right:12%;
+  transform:rotate(-24deg);
+  animation-delay:-3s;
+}
+
+.shard:nth-of-type(3){
+  width:220px;
+  height:150px;
+  bottom:10%;
+  left:16%;
+  transform:rotate(-12deg);
+  animation-delay:-6s;
+}
+
+.shard:nth-of-type(4){
+  width:150px;
+  height:220px;
+  bottom:18%;
+  right:7%;
+  transform:rotate(27deg);
+  animation-delay:-9s;
+}
+
+.hero-bg .shard::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:-20%;
+
+  background:
+
+    linear-gradient(
+      25deg,
+      transparent 48%,
+      rgba(255,255,255,.16) 49%,
+      transparent 50%
+    ),
+
+    linear-gradient(
+      112deg,
+      transparent 46%,
+      rgba(255,255,255,.12) 47%,
+      transparent 48%
+    ),
+
+    linear-gradient(
+      178deg,
+      transparent 52%,
+      rgba(255,255,255,.10) 53%,
+      transparent 54%
+    );
+
+  opacity:.45;
+}
 
 /* =========================================================
    BLACK LIQUID VEIL
