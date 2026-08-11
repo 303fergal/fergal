@@ -286,20 +286,43 @@
   }
   document.querySelectorAll('.holder-grid').forEach(buildHolders);
 
-  function buildDossier(container, count, tagPrefix){
-    let html = '';
-    for(let i=1;i<=count;i++){
-      html += `
-        <div class="dossier-card">
-          <div class="dossier-tag">${tagPrefix} ${String(i).padStart(2,'0')}</div>
-          <div class="dossier-name">Nama</div>
-          <div class="dossier-desc">Deskripsi akan ditambahkan.</div>
-        </div>`;
-    }
-    container.innerHTML = html;
-  }
-  buildDossier(document.getElementById('domusGrid'), 3, 'SITE');
-  buildDossier(document.getElementById('gradusGrid'), 3, 'RANK');
+  const DOMUS = [
+  {name:"GENPOU", desc:"Genpou adalah mansion khusus Phantomhive sekaligus mansion tertinggi. Ada juga Spitze-Genpou, mansion yang dikhususkan hanya untuk High Phantomhive."},
+  {name:"PRAVENT", desc:"Pravent adalah mansion yang diisi oleh anggota-anggota lama dalam komunitas."},
+  {name:"SCHOLAR", desc:"Mansion yang dihuni sebelum masuk ke Pravent, diisi oleh anggota D'Carl ketika sudah menyelesaikan ujian kenaikan pangkat."},
+  {name:"DYONDAZ", desc:"Soon"},
+  {name:"SCHELVYANZ", desc:"Soon"},
+  {name:"RONCZ", desc:"Soon"},
+  {name:"ALOIS", desc:"Soon"},
+];
+
+  const GRADUS = [
+  {name:"PHANTOMHIVE", desc:"Deskripsi rank 1."},
+  {name:"TRANCY", desc:"Deskripsi rank 2."},
+  {name:"CLAIRE", desc:"Deskripsi rank 3."},
+  {name:"MORTCKANZ", desc:"Deskripsi rank 4."},
+  {name:"ZYFFALEND", desc:"Deskripsi rank 5."},
+  {name:"TERENNCE", desc:"Deskripsi rank 6."},
+  {name:"MYEN", desc:"Deskripsi rank 7."},
+  {name:"FOUNT", desc:"Deskripsi rank 8."},
+  {name:"XIN", desc:"Deskripsi rank 9."},
+];
+
+function buildDossier(container, data, tagPrefix){
+  let html = '';
+  data.forEach((item, idx) => {
+    html += `
+<div class="dossier-card">
+<div class="dossier-tag">${tagPrefix} ${String(idx+1).padStart(2,'0')}</div>
+<div class="dossier-name">${item.name}</div>
+<div class="dossier-desc">${item.desc}</div>
+</div>`;
+  });
+  container.innerHTML = html;
+}
+
+buildDossier(document.getElementById('domusGrid'), DOMUS, 'SITE');
+buildDossier(document.getElementById('gradusGrid'), GRADUS, 'RANK');
 
   // active nav highlight
   const navLinks = document.querySelectorAll('.nav-inner a');
