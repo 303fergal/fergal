@@ -1,9 +1,3 @@
-/* =========================================================
-   303FERGAL — NEW VISUAL SYSTEM
-   Dark / Gothic / Liquid Metal / Editorial
-   ========================================================= */
-
-/* ---------- VARIABLES ---------- */
 
 :root{
   --black:#050507;
@@ -34,9 +28,7 @@
 }
 
 
-/* =========================================================
-   RESET
-   ========================================================= */
+/* RESET */
 
 *{
   box-sizing:border-box;
@@ -87,9 +79,7 @@ svg{
 }
 
 
-/* =========================================================
-   GLOBAL CONTAINER
-   ========================================================= */
+/* GLOBAL CONTAINER */
 
 .wrap{
   width:min(1180px, calc(100% - 64px));
@@ -105,9 +95,7 @@ section{
 }
 
 
-/* =========================================================
-   GRAIN
-   ========================================================= */
+/* GRAIN */
 
 .grain-overlay{
   position:fixed;
@@ -119,9 +107,7 @@ section{
 }
 
 
-/* =========================================================
-   SHARDS
-   ========================================================= */
+/* SHARDS */
 
 .shard{
   position:absolute;
@@ -210,9 +196,7 @@ section{
   opacity:.45;
 }
 
-/* =========================================================
-   SECTION BACKGROUND
-   ========================================================= */
+/* SECTION BACKGROUND */
 
 .section-bg{
   position:absolute;
@@ -261,7 +245,7 @@ section{
 }
 
 
-/* ---------- BACKGROUND VARIATIONS ---------- */
+/*  BACKGROUND VARIATIONS  */
 
 .bg-brushed{
   background:
@@ -350,9 +334,7 @@ section{
 }
 
 
-/* =========================================================
-   ORNAMENT
-   ========================================================= */
+/* ORNAMENT */
 
 .ornament-divider{
   display:flex;
@@ -397,9 +379,7 @@ section{
 }
 
 
-/* =========================================================
-   HEADER
-   ========================================================= */
+/* HEADER */
 
 header.site-header{
   position:fixed;
@@ -521,9 +501,7 @@ nav.nav-row{
 }
 
 
-/* =========================================================
-   HERO
-   ========================================================= */
+/*   HERO */
 
 .hero{
   min-height:100svh;
@@ -538,7 +516,7 @@ nav.nav-row{
 }
 
 
-/* ---------- HERO BASE ---------- */
+/*  HERO BASE  */
 
 .hero-bg{
   position:absolute;
@@ -558,9 +536,7 @@ nav.nav-row{
 }
 
 
-/* =========================================================
-   GOTHIC LIQUID ATMOSPHERE
-   ========================================================= */
+/*    GOTHIC LIQUID ATMOSPHERE    */
 
 .liquid-stage{
   position:absolute;
@@ -574,7 +550,7 @@ nav.nav-row{
 }
 
 
-/* ---------- MAIN LIQUID FORMS ---------- */
+/*  MAIN LIQUID FORMS  */
 
 .liquid-blob{
   position:absolute;
@@ -612,8 +588,6 @@ nav.nav-row{
 }
 
 
-/* ---------- LIQUID 01 ---------- */
-
 .lb1{
   width:52%;
   height:48%;
@@ -629,8 +603,6 @@ nav.nav-row{
 }
 
 
-/* ---------- LIQUID 02 ---------- */
-
 .lb2{
   width:48%;
   height:44%;
@@ -645,8 +617,6 @@ nav.nav-row{
     infinite;
 }
 
-
-/* ---------- LIQUID 03 ---------- */
 
 .lb3{
   width:36%;
@@ -664,8 +634,6 @@ nav.nav-row{
     infinite;
 }
 
-
-/* ---------- LIQUID 04 ---------- */
 
 .lb4{
   width:34%;
@@ -685,17 +653,13 @@ nav.nav-row{
 }
 
 
-/* ---------- HIDDEN EXTRA BLOBS ---------- */
-
 .lb5,
 .lb6{
   display:none;
 }
 
 
-/* =========================================================
-   LIQUID MOVEMENT
-   ========================================================= */
+/*    LIQUID MOVEMENT */
 
 @keyframes gothicLiquidA{
 
@@ -808,9 +772,7 @@ nav.nav-row{
 
 }
 
-/* =========================================================
-   GOTHIC LIQUID HIGHLIGHTS
-   ========================================================= */
+/*    GOTHIC LIQUID HIGHLIGHTS    */
 
 .hero-bg::before{
   content:"";
@@ -843,9 +805,7 @@ nav.nav-row{
 
   mix-blend-mode:screen;
 }
-/* =========================================================
-   SHATTERED GLASS
-   ========================================================= */
+/*    SHATTERED GLASS */
 
 .shard{
   position:absolute;
@@ -893,9 +853,7 @@ nav.nav-row{
 }
 
 
-/* =========================================================
-   GLASS VARIATIONS
-   ========================================================= */
+/*    GLASS VARIATIONS    */
 
 .shard.s-chrome{
   background:
@@ -930,9 +888,7 @@ nav.nav-row{
 }
 
 
-/* =========================================================
-   GLASS LIGHT EDGE
-   ========================================================= */
+/*    GLASS LIGHT EDGE    */
 
 .shard::before{
 
@@ -956,9 +912,7 @@ nav.nav-row{
 }
 
 
-/* =========================================================
-   GLASS MOVEMENT
-   ========================================================= */
+/*    GLASS MOVEMENT */
 
 @keyframes shardFloat{
 
@@ -1000,9 +954,7 @@ nav.nav-row{
 
 }
 
-/* =========================================================
-   SHATTERED GLASS POSITIONS
-   ========================================================= */
+/*    SHATTERED GLASS POSITIONS */
 
 .shard:nth-of-type(1){
   width:180px;
@@ -1073,9 +1025,7 @@ nav.nav-row{
   opacity:.45;
 }
 
-/* =========================================================
-   BLACK LIQUID VEIL
-   ========================================================= */
+/*    BLACK LIQUID VEIL */
 
 .hero-bg::after{
   content:"";
@@ -1094,7 +1044,7 @@ nav.nav-row{
   pointer-events:none;
 }
 
-/* ---------- MOVING LIGHT ---------- */
+/*  MOVING LIGHT  */
 
 .hero-sheen{
   position:absolute;
@@ -1135,7 +1085,7 @@ nav.nav-row{
 }
 
 
-/* ---------- VIGNETTE ---------- */
+/*  VIGNETTE  */
 
 .hero-vignette{
   position:absolute;
@@ -1156,9 +1106,9 @@ nav.nav-row{
 }
 
 
-/* =========================================================
+/* 
    HERO CONTENT
-   ========================================================= */
+    */
 
 .hero-content{
   position:relative;
@@ -1173,7 +1123,7 @@ nav.nav-row{
 }
 
 
-/* ---------- MAIN LOGO ---------- */
+/*  MAIN LOGO  */
 
 .brand-title{
 
@@ -1235,7 +1185,7 @@ nav.nav-row{
 }
 
 
-/* ---------- HERO TAG ---------- */
+/*  HERO TAG  */
 
 .hero-tag{
 
@@ -1254,7 +1204,7 @@ nav.nav-row{
 }
 
 
-/* ---------- ESTABLISHED ---------- */
+/*  ESTABLISHED  */
 
 .hero-est{
 
@@ -1270,7 +1220,7 @@ nav.nav-row{
 }
 
 
-/* ---------- SCROLL ---------- */
+/*  SCROLL  */
 
 .scroll-hint{
 
@@ -1315,9 +1265,9 @@ nav.nav-row{
 }
 
 
-/* =========================================================
+/* 
    GENERAL SECTIONS
-   ========================================================= */
+    */
 
 .section{
   padding:130px 0;
@@ -1331,30 +1281,19 @@ nav.nav-row{
 
   display:flex;
   align-items:center;
-
   gap:10px;
-
   margin-bottom:24px;
-
   font-family:var(--mono);
-
   font-size:10px;
-
   letter-spacing:.24em;
-
   color:var(--grey);
-
   text-transform:uppercase;
 }
 
 .eyebrow::before{
-
   content:"";
-
   width:22px;
-
   height:1px;
-
   background:
     linear-gradient(
       90deg,
@@ -1364,11 +1303,8 @@ nav.nav-row{
 }
 
 .section-title{
-
   font-family:var(--display);
-
   font-weight:500;
-
   font-size:
     clamp(
       32px,
@@ -1377,16 +1313,14 @@ nav.nav-row{
     );
 
   line-height:1;
-
   color:var(--white);
-
   letter-spacing:.015em;
 }
 
 
-/* =========================================================
+/* 
    HOME
-   ========================================================= */
+    */
 
 .home-block{
   max-width:650px;
@@ -1404,9 +1338,9 @@ nav.nav-row{
 }
 
 
-/* =========================================================
+/* 
    HISTORIA
-   ========================================================= */
+    */
 
 .historia-list{
 
@@ -1489,9 +1423,9 @@ details[open] .historia-chev{
 }
 
 
-/* =========================================================
+/* 
    DOMUS / GRADUS
-   ========================================================= */
+    */
 
 .dossier-intro{
 
@@ -1607,9 +1541,9 @@ details[open] .historia-chev{
 }
 
 
-/* =========================================================
+/* 
    HIERARCHY
-   ========================================================= */
+    */
 
 .hier-intro{
 
@@ -1669,7 +1603,7 @@ details[open] .historia-chev{
 }
 
 
-/* ---------- HOLDER BUTTON ---------- */
+/*  HOLDER BUTTON  */
 
 details.holder-toggle summary{
 
@@ -1735,7 +1669,7 @@ details.holder-toggle[open] .chev{
 }
 
 
-/* ---------- MEMBER GRID ---------- */
+/*  MEMBER GRID  */
 
 .holder-grid{
 
@@ -1877,9 +1811,9 @@ details.holder-toggle[open] .chev{
 }
 
 
-/* =========================================================
+/* 
    UNIT
-   ========================================================= */
+    */
 
 .unit-block{
 
@@ -1951,9 +1885,9 @@ details.holder-toggle[open] .chev{
 }
 
 
-/* =========================================================
+/* 
    FOOTER
-   ========================================================= */
+    */
 
 footer.site-footer{
 
@@ -2083,9 +2017,9 @@ footer.site-footer{
 }
 
 
-/* =========================================================
+/* 
    RESPONSIVE — TABLET
-   ========================================================= */
+    */
 
 @media(max-width:800px){
 
@@ -2135,9 +2069,9 @@ footer.site-footer{
 }
 
 
-/* =========================================================
+/* 
    RESPONSIVE — PHONE
-   ========================================================= */
+    */
 
 @media(max-width:520px){
 
@@ -2362,9 +2296,9 @@ footer.site-footer{
 }
 
 
-/* =========================================================
+/* 
    REDUCED MOTION
-   ========================================================= */
+    */
 
 @media(prefers-reduced-motion:reduce){
 
