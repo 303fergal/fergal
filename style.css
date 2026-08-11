@@ -1405,41 +1405,6 @@ nav.nav-row{
 
 
 /* =========================================================
-   NOBIS
-   ========================================================= */
-
-.empty-frame{
-
-  max-width:650px;
-
-  padding:70px 30px;
-
-  border:
-    1px solid var(--line);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.025),
-      rgba(255,255,255,.008)
-    );
-
-  text-align:center;
-}
-
-.empty-frame .mono{
-
-  font-size:10px;
-
-  letter-spacing:.18em;
-
-  color:var(--grey);
-
-  text-transform:uppercase;
-}
-
-
-/* =========================================================
    HISTORIA
    ========================================================= */
 
