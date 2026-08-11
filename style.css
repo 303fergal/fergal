@@ -2258,20 +2258,49 @@ footer.site-footer{
   /* HISTORY */
 
   details.historia-item summary{
-
     padding:
       24px 2px;
-
     font-size:21px;
   }
 
   .historia-body{
-
     font-size:13px;
-
     line-height:1.8;
   }
 
+.historia-summary{
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 24px 2px;
+  font-size: 21px;
+}
+
+.historia-content{
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .45s cubic-bezier(.4,0,.2,1);
+}
+
+.historia-content-inner{
+  overflow: hidden;
+}
+
+.historia-item.open .historia-content{
+  grid-template-rows: 1fr;
+}
+
+.historia-chev{
+  transition: transform .3s ease;
+  display: inline-block;
+}
+
+.historia-item.open .historia-chev{
+  transform: rotate(45deg);
+}
 
   /* DOSSIERS */
 
