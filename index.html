@@ -145,7 +145,7 @@
       <p class="hier-tier-desc">Deskripsi tingkatan ini akan segera ditambahkan.</p>
       <details class="holder-toggle">
         <summary>Current Holder <span class="chev">▾</span></summary>
-        <div class="holder-grid" data-count="4"></div>
+        <div class="holder-grid" id="highGrid"></div>
       </details>
     </div>
 
@@ -154,7 +154,7 @@
       <p class="hier-tier-desc">Deskripsi tingkatan ini akan segera ditambahkan.</p>
       <details class="holder-toggle">
         <summary>Current Holder <span class="chev">▾</span></summary>
-        <div class="holder-grid" data-count="9"></div>
+        <div class="holder-grid" id="midGrid"></div>
       </details>
     </div>
 
@@ -163,7 +163,7 @@
       <p class="hier-tier-desc">Deskripsi tingkatan ini akan segera ditambahkan.</p>
       <details class="holder-toggle">
         <summary>Current Holder <span class="chev">▾</span></summary>
-        <div class="holder-grid" data-count="19"></div>
+        <div class="holder-grid" id="infGrid"></div>
       </details>
     </div>
   </div>
@@ -215,23 +215,67 @@
 <script>
   const personIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#9A9BA1" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>';
 
+  const HOLDERS = {
+    highGrid: [
+      {photo:"", name:"GIETHPEY O’DYLLICH", role:"High Phantomhive", username:"@kfawaii"},
+      {photo:"", name:"PORTGAS RODGE", role:"High Phantomhive", username:"@vod5s"},
+      {photo:"", name:"JOANNE WYNNE", role:"High Phantomhive", username:"@caftsie"},
+      {photo:"", name:"MICKEY RALPHZEL", role:"High Phantomhive", username:"@el.fairy"}
+    ],
+    midGrid:  [
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+    ],
+    infGrid: [
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+      {photo:"", name:"Nama Member", role:"Jabatan", username:"@username"},
+    ];
+  };
+
   function buildHolders(container){
-    const count = parseInt(container.dataset.count, 10);
+    const list = HOLDERS[container.id] || [];
     let html = '';
-    for(let i=1;i<=count;i++){
+    list.forEach((m, idx) => {
+      const photoHTML = m.photo
+        ? `<img src="${m.photo}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;border-radius:7px;">`
+        : personIcon;
       html += `
         <div class="portrait-card">
           <div class="portrait-frame">
             <div class="inner">
-              <span class="id-tag">Nº${String(i).padStart(2,'0')}</span>
-              ${personIcon}
+              <span class="id-tag">Nº${String(idx+1).padStart(2,'0')}</span>
+              ${photoHTML}
             </div>
           </div>
-          <div class="portrait-name">Nama Member</div>
-          <div class="portrait-role">Jabatan</div>
-          <div class="portrait-user mono">@username</div>
+          <div class="portrait-name">${m.name}</div>
+          <div class="portrait-role">${m.role}</div>
+          <div class="portrait-user mono">${m.username}</div>
         </div>`;
-    }
+    });
     container.innerHTML = html;
   }
   document.querySelectorAll('.holder-grid').forEach(buildHolders);
