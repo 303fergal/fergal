@@ -2332,17 +2332,11 @@ details.holder-toggle{
 
 details.holder-toggle .holder-grid{
   display:grid;
-
   grid-template-rows:0fr;
-
   opacity:0;
-
   transform:translateY(-10px);
-
   max-height:0;
-
   overflow:hidden;
-
   transition:
     max-height .7s cubic-bezier(.22,.61,.36,1),
     opacity .4s ease,
@@ -2350,10 +2344,8 @@ details.holder-toggle .holder-grid{
 }
 
 details.holder-toggle[open] .holder-grid{
-  max-height:2000px;
-
+  max-height:5000px;
   opacity:1;
-
   transform:translateY(0);
 }
 
