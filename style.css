@@ -2430,3 +2430,57 @@ details.holder-toggle[open] .chev{
   }
 
 }
+/*  LIQUID ENHANCEMENT —  */
+
+.bg-streaks{position:absolute; inset:0; z-index:1; pointer-events:none; mix-blend-mode:screen;}
+.bg-streaks .streak{
+  position:absolute; width:2px; height:150%; top:-25%;
+  background:linear-gradient(180deg, transparent, rgba(235,240,255,.5) 45%, rgba(255,255,255,.85) 50%, rgba(235,240,255,.5) 55%, transparent);
+  filter:blur(1.5px);
+}
+.bg-streaks .st1{left:20%; animation:st1Drift 16s ease-in-out infinite;}
+.bg-streaks .st2{left:70%; animation:st2Drift 20s ease-in-out infinite; animation-delay:-6s;}
+@keyframes st1Drift{0%,100%{transform:rotate(20deg) translateY(0); opacity:.28;}50%{transform:rotate(20deg) translateY(5%); opacity:.6;}}
+@keyframes st2Drift{0%,100%{transform:rotate(-18deg) translateY(0); opacity:.22;}50%{transform:rotate(-18deg) translateY(-6%); opacity:.55;}}
+
+.bg-bubbles{position:absolute; inset:0; z-index:1; pointer-events:none;}
+.bg-bubbles .bubble{
+  position:absolute; width:5px; height:5px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #fff, rgba(255,255,255,.15) 60%, transparent 75%);
+  box-shadow:0 0 6px rgba(255,255,255,.4);
+  opacity:.5; animation:bubbleFloat 9s ease-in-out infinite;
+}
+.bg-bubbles .bubble.b-lg{width:9px; height:9px;}
+.bg-bubbles .bubble.b-navy{
+  background:radial-gradient(circle at 35% 30%, #cfe0ff, rgba(120,150,220,.2) 60%, transparent 75%);
+  box-shadow:0 0 8px rgba(120,150,220,.4);
+}
+@keyframes bubbleFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+
+/* navy + kontras diperkuat di SEMUA section-bg (bukan cuma hero) */
+.section-bg::before{
+  content:"";
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:linear-gradient(155deg, rgba(30,42,85,.42) 0%, transparent 45%, rgba(3,4,9,.5) 100%);
+}
+
+/* hero  */
+.hero-bg{
+  background:radial-gradient(ellipse at 50% 45%, #131c33 0%, #06070c 42%, #020203 80%) !important;
+}
+.liquid-blob{
+  background:
+    radial-gradient(ellipse at 32% 25%,
+      rgba(255,255,255,.46) 0%,
+      rgba(205,212,225,.26) 15%,
+      rgba(110,120,150,.22) 30%,
+      rgba(30,38,60,.20) 50%,
+      rgba(4,5,10,.10) 70%,
+      transparent 78%) !important;
+}
+.hero-bg::before{
+  background:
+    radial-gradient(ellipse at 20% 25%, rgba(255,255,255,.08), transparent 28%),
+    radial-gradient(ellipse at 80% 70%, rgba(60,85,150,.20), transparent 34%),
+    radial-gradient(ellipse at 55% 5%, rgba(255,255,255,.05), transparent 25%) !important;
+}
