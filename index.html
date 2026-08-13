@@ -440,28 +440,25 @@ buildDossier(document.getElementById('gradusGrid'), GRADUS, 'PANGKAT');
 <script type="module">
   const box = document.getElementById('liquidMetalBg');
   try {
-    const { LiquidMetal, LiquidMetalShapes } = await import('https://cdn.jsdelivr.net/npm/@paper-design/shaders/+esm');
+    const {
+      ShaderMount,
+      liquidMetalFragmentShader,
+      LiquidMetalShapes,
+      getShaderColorFromString
+    } = await import('https://cdn.jsdelivr.net/npm/@paper-design/shaders/+esm');
 
-    const canvas = document.createElement('canvas');
-    canvas.width = box.clientWidth;
-    canvas.height = box.clientHeight;
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    box.appendChild(canvas);
-
-    new LiquidMetal(canvas, {
-      shape: LiquidMetalShapes.diamond,
-      colorBack: '#0b0f1e',
-      colorTint: '#c9cdd6',
-      repetition: 2,
-      softness: 0.1,
-      distortion: 0.07,
-      contour: 0.4,
-      shiftRed: 0.3,
-      shiftBlue: 0.3,
-      angle: 70,
-      speed: 1,
-      scale: 0.6
+    new ShaderMount(box, liquidMetalFragmentShader, {
+      u_colorBack: getShaderColorFromString('#0b0f1e'),
+      u_colorTint: getShaderColorFromString('#c9cdd6'),
+      u_repetition: 2,
+      u_shiftRed: 0.3,
+      u_shiftBlue: 0.3,
+      u_contour: 0.4,
+      u_softness: 0.1,
+      u_distortion: 0.07,
+      u_angle: 70,
+      u_shape: LiquidMetalShapes.diamond,
+      u_isImage: false
     });
   } catch (err) {
     box.textContent = 'ERROR: ' + err.message;
