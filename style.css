@@ -2484,3 +2484,47 @@ details.holder-toggle[open] .chev{
     radial-gradient(ellipse at 80% 70%, rgba(60,85,150,.20), transparent 34%),
     radial-gradient(ellipse at 55% 5%, rgba(255,255,255,.05), transparent 25%) !important;
 }
+
+/* =========================================================
+   HERO — LIQUID METAL TEST
+   ========================================================= */
+
+.hero-bg{
+    position:relative;
+    overflow:hidden;
+}
+
+.liquid-metal-bg{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    z-index:0;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #30343d 0%,
+            #111318 55%,
+            #050608 100%
+        );
+
+    overflow:hidden;
+}
+
+
+/* Keep everything else above the shader */
+
+.hero-bg .liquid-stage,
+.hero-bg .hero-sheen,
+.hero-bg .hero-vignette{
+    position:relative;
+    z-index:2;
+}
+
+.hero-content{
+    position:relative;
+    z-index:5;
+}
