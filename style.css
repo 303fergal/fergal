@@ -109,46 +109,40 @@ section{
 
 /* SHARDS */
 
-.shard{
-  position:absolute;
-  pointer-events:none;
-  z-index:1;
-
-  opacity:.55;
-
-  mix-blend-mode:screen;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.20),
-      rgba(170,180,205,.06) 45%,
-      transparent 75%
+.shard {
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.16),
+            rgba(210,220,240,.05) 40%,
+            rgba(255,255,255,.02) 60%,
+            transparent 75%
+        );
+    border: 1px solid rgba(255,255,255,.28);
+    box-shadow:
+        inset 1px 1px 0 rgba(255,255,255,.22),
+        inset -1px -1px 0 rgba(80,90,120,.12),
+        0 0 20px rgba(160,180,220,.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    mix-blend-mode: screen;
+    opacity: .65;
+    clip-path: polygon(
+        50% 0%,
+        61% 27%,
+        100% 17%,
+        76% 48%,
+        94% 100%,
+        51% 70%,
+        18% 100%,
+        27% 58%,
+        0% 38%,
+        37% 30%
     );
-
-  border:1px solid rgba(235,240,255,.22);
-
-  box-shadow:
-    inset 1px 1px 0 rgba(255,255,255,.16),
-    0 0 20px rgba(100,120,170,.05);
-
-  /* IRREGULAR GLASS FRAGMENT */
-  clip-path:polygon(
-    8% 4%,
-    72% 0%,
-    100% 24%,
-    84% 57%,
-    94% 91%,
-    48% 100%,
-    19% 73%,
-    0% 42%
-  );
-
-  animation:
-    shardFloat
-    14s
-    ease-in-out
-    infinite;
+    animation: shardFloat 12s ease-in-out infinite;
 }
 .shard1{
   width:180px;
