@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Test Liquid Metal Final v3</title>
+<title>Test Liquid Metal Final v4</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background:#050609; height:100vh; overflow:hidden; }
@@ -65,9 +65,9 @@
       u_angle: 70,
       u_shape: LiquidMetalShapes.metaballs,
       u_isImage: false
-    }, undefined, 1);
+    });
 
-    status.textContent = 'BERHASIL LOAD';
+    status.textContent = 'BERHASIL LOAD — perhatikan 5-10 detik, jangan langsung screenshot';
   } catch (err) {
     status.textContent = 'ERROR: ' + err.message;
     console.error(err);
