@@ -22,40 +22,45 @@ body {
 }
 
 /* =====================================================
-   METALLIC IMAGE BACKGROUND
+   METALLIC BACKGROUND
    ===================================================== */
 
 .metal-background {
     position: fixed;
-    inset: 0;
-
+    inset: -5%;
+    
     background-image:
         url("Assets/metal-background.jpeg");
 
     background-size: cover;
-    background-position: center;
-
-    transform: scale(1.04);
-
+    background-position: center center;
+    
     z-index: 0;
+    
+    transform: scale(1.08);
+    
+    filter:
+        contrast(1.08)
+        brightness(.72)
+        saturate(.65);
 }
 
+
 /* =====================================================
-   DARK METALLIC OVERLAY
+   DARK METALLIC DEPTH
    ===================================================== */
 
 .metal-background::after {
     content: "";
-
     position: absolute;
     inset: 0;
 
     background:
         radial-gradient(
-            circle at 50% 45%,
-            transparent 15%,
+            ellipse at 50% 45%,
+            transparent 20%,
             rgba(0,0,0,.18) 55%,
-            rgba(0,0,0,.65) 100%
+            rgba(0,0,0,.72) 100%
         );
 
     pointer-events: none;
@@ -63,11 +68,11 @@ body {
 
 
 /* =====================================================
-   MOVING METALLIC BLOBS
+   MOVING METALLIC SMOKE
    ===================================================== */
 
 .blob {
-    position: absolute;
+    position: fixed;
 
     border-radius:
         60% 40% 55% 45% /
@@ -75,18 +80,19 @@ body {
 
     background:
         radial-gradient(
-            circle at 30% 25%,
-            rgba(255,255,255,.35),
-            rgba(180,185,195,.20) 18%,
-            rgba(30,35,45,.30) 48%,
-            rgba(0,0,0,.65) 75%
+            ellipse at 35% 30%,
+            rgba(255,255,255,.16) 0%,
+            rgba(190,195,205,.10) 20%,
+            rgba(80,85,95,.12) 42%,
+            rgba(0,0,0,.42) 70%,
+            transparent 100%
         );
 
-    filter: blur(35px);
+    filter: blur(55px);
 
-    mix-blend-mode: screen;
+    mix-blend-mode: soft-light;
 
-    opacity: .55;
+    opacity: .65;
 
     pointer-events: none;
 
@@ -99,14 +105,14 @@ body {
    ===================================================== */
 
 .blob-1 {
-    width: 65vw;
-    height: 45vw;
+    width: 75vw;
+    height: 48vw;
 
-    left: -20vw;
+    left: -25vw;
     top: 5vh;
 
     animation:
-        blobOne 18s ease-in-out infinite alternate;
+        blobOne 22s ease-in-out infinite alternate;
 }
 
 
@@ -115,16 +121,16 @@ body {
    ===================================================== */
 
 .blob-2 {
-    width: 55vw;
-    height: 60vw;
+    width: 65vw;
+    height: 65vw;
 
-    right: -15vw;
-    top: 10vh;
+    right: -25vw;
+    top: 15vh;
 
-    opacity: .45;
+    opacity: .5;
 
     animation:
-        blobTwo 24s ease-in-out infinite alternate;
+        blobTwo 28s ease-in-out infinite alternate;
 }
 
 
@@ -133,16 +139,16 @@ body {
    ===================================================== */
 
 .blob-3 {
-    width: 70vw;
-    height: 35vw;
+    width: 80vw;
+    height: 40vw;
 
-    left: 15vw;
-    bottom: -15vh;
+    left: 10vw;
+    bottom: -20vh;
 
-    opacity: .35;
+    opacity: .4;
 
     animation:
-        blobThree 27s ease-in-out infinite alternate;
+        blobThree 32s ease-in-out infinite alternate;
 }
 
 
@@ -151,29 +157,31 @@ body {
    ===================================================== */
 
 .smoke {
-    position: absolute;
+    position: fixed;
 
-    width: 90vw;
-    height: 35vw;
+    width: 110vw;
+    height: 45vw;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             ellipse,
-            rgba(255,255,255,.14) 0%,
-            rgba(180,185,195,.08) 25%,
-            rgba(80,85,95,.04) 50%,
+            rgba(210,215,225,.09) 0%,
+            rgba(130,135,145,.06) 25%,
+            rgba(40,45,55,.05) 50%,
             transparent 75%
         );
 
-    filter: blur(60px);
+    filter: blur(75px);
 
-    mix-blend-mode: screen;
+    mix-blend-mode: soft-light;
 
-    opacity: .55;
+    opacity: .7;
 
     pointer-events: none;
+
+    will-change: transform;
 }
 
 
@@ -182,13 +190,13 @@ body {
    ===================================================== */
 
 .smoke-1 {
-    left: -25vw;
-    top: 20vh;
+    left: -35vw;
+    top: 15vh;
 
     transform: rotate(-20deg);
 
     animation:
-        smokeOne 30s ease-in-out infinite alternate;
+        smokeOne 35s ease-in-out infinite alternate;
 }
 
 
@@ -197,15 +205,15 @@ body {
    ===================================================== */
 
 .smoke-2 {
-    right: -30vw;
-    bottom: 15vh;
+    right: -35vw;
+    bottom: 10vh;
 
     transform: rotate(25deg);
 
-    opacity: .4;
+    opacity: .45;
 
     animation:
-        smokeTwo 35s ease-in-out infinite alternate;
+        smokeTwo 40s ease-in-out infinite alternate;
 }
 
 
@@ -217,23 +225,23 @@ body {
 
     0% {
         transform:
-            translate3d(0,0,0)
-            rotate(0deg)
+            translate3d(-5vw, 0, 0)
+            rotate(-10deg)
             scale(1);
     }
 
     50% {
         transform:
-            translate3d(18vw,8vh,0)
+            translate3d(15vw, 10vh, 0)
             rotate(15deg)
-            scale(1.15);
+            scale(1.18);
     }
 
     100% {
         transform:
-            translate3d(5vw,20vh,0)
+            translate3d(5vw, 25vh, 0)
             rotate(30deg)
-            scale(.95);
+            scale(.92);
     }
 }
 
@@ -242,21 +250,21 @@ body {
 
     0% {
         transform:
-            translate3d(0,0,0)
+            translate3d(0, 0, 0)
             rotate(0deg)
             scale(1);
     }
 
     50% {
         transform:
-            translate3d(-15vw,10vh,0)
+            translate3d(-18vw, 12vh, 0)
             rotate(-20deg)
-            scale(1.2);
+            scale(1.18);
     }
 
     100% {
         transform:
-            translate3d(-5vw,-10vh,0)
+            translate3d(-5vw, -12vh, 0)
             rotate(15deg)
             scale(.9);
     }
@@ -267,21 +275,21 @@ body {
 
     0% {
         transform:
-            translate3d(0,0,0)
+            translate3d(0, 0, 0)
             rotate(0deg)
             scale(1);
     }
 
     50% {
         transform:
-            translate3d(-15vw,-10vh,0)
+            translate3d(-18vw, -12vh, 0)
             rotate(-15deg)
             scale(1.2);
     }
 
     100% {
         transform:
-            translate3d(15vw,-5vh,0)
+            translate3d(18vw, -5vh, 0)
             rotate(20deg)
             scale(.9);
     }
@@ -292,16 +300,16 @@ body {
 
     0% {
         transform:
-            translate3d(0,0,0)
+            translate3d(-5vw, 0, 0)
             rotate(-20deg)
             scale(1);
     }
 
     100% {
         transform:
-            translate3d(30vw,10vh,0)
+            translate3d(30vw, 12vh, 0)
             rotate(5deg)
-            scale(1.4);
+            scale(1.45);
     }
 }
 
@@ -310,19 +318,18 @@ body {
 
     0% {
         transform:
-            translate3d(0,0,0)
+            translate3d(0, 0, 0)
             rotate(25deg)
             scale(1);
     }
 
     100% {
         transform:
-            translate3d(-25vw,-15vh,0)
+            translate3d(-28vw, -18vh, 0)
             rotate(40deg)
-            scale(1.35);
+            scale(1.4);
     }
 }
-
 
 /* =====================================================
    VIGNETTE
@@ -392,38 +399,38 @@ body {
 @media (max-width: 600px) {
 
     .metal-background {
-        background-position: center;
+        inset: -8%;
+        background-position: center center;
         transform: scale(1.08);
     }
 
     .blob {
-        filter: blur(30px);
+        filter: blur(40px);
     }
 
     .blob-1 {
-        width: 100vw;
-        height: 70vw;
+        width: 120vw;
+        height: 80vw;
     }
 
     .blob-2 {
-        width: 90vw;
-        height: 100vw;
+        width: 110vw;
+        height: 110vw;
     }
 
     .blob-3 {
-        width: 110vw;
-        height: 55vw;
+        width: 130vw;
+        height: 65vw;
     }
 
     .smoke {
-        width: 130vw;
-        height: 50vw;
+        width: 150vw;
+        height: 60vw;
     }
 
     .hero-title {
         font-size: 15vw;
     }
-
 }
 
 </style>
