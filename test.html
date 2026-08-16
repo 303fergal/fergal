@@ -176,91 +176,146 @@ body {
 
 
 /* =========================
-   SKULL
+   CENTER SKULL
    ========================= */
 
-.skull {
+.skull-wrap {
     position: absolute;
 
     left: 50%;
     top: 50%;
 
     width: min(70vw, 430px);
+    height: min(80vh, 500px);
 
-    transform:
-        translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 
     z-index: 10;
 
     pointer-events: none;
+}
+
+
+/* =========================
+   GOD RAYS
+   ========================= */
+
+.skull-rays {
+    position: absolute;
+
+    inset: -120px;
+
+    z-index: 1;
+
+    background:
+        conic-gradient(
+            from 0deg,
+
+            transparent 0deg,
+            rgba(255,255,255,.16) 12deg,
+            transparent 25deg,
+
+            transparent 45deg,
+            rgba(255,255,255,.10) 60deg,
+            transparent 78deg,
+
+            transparent 120deg,
+            rgba(255,255,255,.16) 135deg,
+            transparent 155deg,
+
+            transparent 210deg,
+            rgba(255,255,255,.08) 225deg,
+            transparent 245deg,
+
+            transparent 300deg,
+            rgba(255,255,255,.13) 315deg,
+            transparent 335deg
+        );
+
+    filter: blur(18px);
+
+    opacity: .4;
 
     animation:
-        skullFloat
-        7s
+        skullRays
+        9s
         ease-in-out
-        infinite alternate;
+        infinite;
+
+    -webkit-mask-image:
+        radial-gradient(
+            circle,
+            black 0%,
+            black 28%,
+            transparent 72%
+        );
+
+    mask-image:
+        radial-gradient(
+            circle,
+            black 0%,
+            black 28%,
+            transparent 72%
+        );
+
+    pointer-events: none;
 }
 
 
-/* SKULL RELIEF / LIGHT */
+/* =========================
+   SKULL ITSELF
+   ========================= */
 
-.skull img {
+.skull {
+    position: absolute;
 
-    display: block;
+    left: 0;
+    top: 0;
 
     width: 100%;
-    height: auto;
+    height: 100%;
+
+    object-fit: contain;
+
+    z-index: 2;
 
     filter:
-
         drop-shadow(
-            0 18px 15px rgba(0,0,0,.55)
+            0 20px 18px rgba(0,0,0,.65)
         )
-
         drop-shadow(
-            0 0 12px rgba(255,255,255,.25)
+            0 0 12px rgba(255,255,255,.20)
         )
-
         contrast(1.08)
-        brightness(1.05);
+        brightness(1.04);
 
+    /* IMPORTANT:
+       no animation here */
 }
 
 
-/* SKULL MOVEMENT */
+/* =========================
+   RAY ANIMATION
+   ========================= */
 
-@keyframes skullFloat {
+@keyframes skullRays {
 
-    0% {
-
+    0%,
+    100% {
         transform:
-            translate(-50%, -50%)
-            translate3d(-12px, 10px, 0)
-            rotate(-2deg)
-            scale(1);
+            scale(.92)
+            rotate(0deg);
 
+        opacity: .28;
     }
 
     50% {
-
         transform:
-            translate(-50%, -50%)
-            translate3d(10px, -12px, 0)
-            rotate(1deg)
-            scale(1.025);
+            scale(1.08)
+            rotate(8deg);
 
+        opacity: .52;
     }
-
-    100% {
-
-        transform:
-            translate(-50%, -50%)
-            translate3d(-5px, 8px, 0)
-            rotate(2deg)
-            scale(1.04);
-
-    }
-
 }
 
 
@@ -318,14 +373,17 @@ body {
 
     <!-- MOVING SKULL -->
 
-    <div class="skull">
+        <div class="skull-wrap">
 
-        <img
-            src="Assets/Untitled194_20260817053942.png"
-            alt=""
-        >
+            <div class="skull-rays"></div>
 
-    </div>
+            <img
+                class="skull"
+                src="Assets/Untitled193_20260817045750.png"
+                alt=""
+            >
+
+        </div>
 
 
     <!-- TITLE -->
