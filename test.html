@@ -403,6 +403,10 @@ body {
         background-position: center center;
         transform: scale(1.08);
     }
+   
+   .skull-wrap {
+         width: 72vw;
+   }
 
     .blob {
         filter: blur(40px);
@@ -447,6 +451,111 @@ body {
 <div class="blob blob-1"></div>
 <div class="blob blob-2"></div>
 <div class="blob blob-3"></div>
+
+<!-- FLOATING SKULL -->
+<div class="skull-wrap">
+    <img
+        src="Assets/Untitled193_20260817045750.png"
+        class="floating-skull"
+        alt=""
+    >
+</div>
+
+/* =====================================================
+   FLOATING SKULL
+   ===================================================== */
+
+.skull-wrap {
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    width: min(52vw, 430px);
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index: 4;
+
+    pointer-events: none;
+
+    perspective: 900px;
+
+    will-change: transform;
+}
+
+
+.floating-skull {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+
+    /* relief / depth */
+    filter:
+        drop-shadow(0 28px 25px rgba(0,0,0,.65))
+        drop-shadow(0 8px 8px rgba(0,0,0,.55))
+        drop-shadow(0 -3px 5px rgba(255,255,255,.18));
+
+    transform:
+        rotateX(2deg)
+        rotateY(-4deg)
+        translateZ(20px);
+
+    animation:
+        skullFloat 7s ease-in-out infinite;
+    
+    will-change: transform, filter;
+}
+
+
+/* subtle floating movement */
+
+@keyframes skullFloat {
+
+    0% {
+        transform:
+            rotateX(2deg)
+            rotateY(-4deg)
+            translate3d(0, 0, 20px)
+            scale(1);
+    }
+
+    25% {
+        transform:
+            rotateX(-1deg)
+            rotateY(3deg)
+            translate3d(7px, -10px, 25px)
+            scale(1.015);
+    }
+
+    50% {
+        transform:
+            rotateX(3deg)
+            rotateY(5deg)
+            translate3d(-4px, -17px, 30px)
+            scale(1.025);
+    }
+
+    75% {
+        transform:
+            rotateX(-2deg)
+            rotateY(-2deg)
+            translate3d(-8px, -7px, 22px)
+            scale(1.01);
+    }
+
+    100% {
+        transform:
+            rotateX(2deg)
+            rotateY(-4deg)
+            translate3d(0, 0, 20px)
+            scale(1);
+    }
+}
 
 
 <!-- SMOKE -->
