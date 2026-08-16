@@ -2528,3 +2528,239 @@ details.holder-toggle[open] .chev{
     position:relative;
     z-index:5;
 }
+
+/* =========================================================
+   NEW HERO METALLIC BACKGROUND
+   ========================================================= */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    background: #050609;
+}
+
+/* Metallic image */
+.hero-metal-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    display: block;
+    z-index: 0;
+}
+
+/* Dark atmospheric layer */
+.hero-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,.04),
+            rgba(0,0,0,.35) 55%,
+            rgba(0,0,0,.72) 100%
+        );
+
+    pointer-events: none;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   MOVING SMOKY BLOBS
+   ========================================================= */
+
+.liquid-stage {
+    position: absolute;
+    inset: -15%;
+    width: 130%;
+    height: 130%;
+
+    z-index: 1;
+    pointer-events: none;
+
+    filter: blur(45px);
+    opacity: .55;
+    mix-blend-mode: screen;
+}
+
+.liquid-blob {
+    position: absolute;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255,255,255,.85),
+            rgba(180,190,205,.38) 35%,
+            rgba(70,80,100,.18) 65%,
+            transparent 75%
+        );
+
+    filter: blur(20px);
+
+    animation:
+        blobFloat 16s ease-in-out infinite alternate;
+}
+
+
+/* Individual blobs */
+
+.lb1 {
+    width: 38vw;
+    height: 38vw;
+    top: 5%;
+    left: 5%;
+    animation-duration: 17s;
+}
+
+.lb2 {
+    width: 30vw;
+    height: 30vw;
+    top: 20%;
+    right: 5%;
+    animation-duration: 20s;
+    animation-delay: -5s;
+}
+
+.lb3 {
+    width: 42vw;
+    height: 42vw;
+    top: 42%;
+    left: 20%;
+    animation-duration: 22s;
+    animation-delay: -8s;
+}
+
+.lb4 {
+    width: 28vw;
+    height: 28vw;
+    bottom: 8%;
+    right: 10%;
+    animation-duration: 18s;
+    animation-delay: -3s;
+}
+
+.lb5 {
+    width: 35vw;
+    height: 35vw;
+    bottom: 0;
+    left: 0;
+    animation-duration: 24s;
+    animation-delay: -12s;
+}
+
+.lb6 {
+    width: 25vw;
+    height: 25vw;
+    top: 55%;
+    right: 30%;
+    animation-duration: 19s;
+    animation-delay: -7s;
+}
+
+
+/* Slow floating / smoky movement */
+
+@keyframes blobFloat {
+
+    0% {
+        transform:
+            translate3d(-3%, -2%, 0)
+            scale(1);
+    }
+
+    33% {
+        transform:
+            translate3d(6%, 4%, 0)
+            scale(1.08);
+    }
+
+    66% {
+        transform:
+            translate3d(-4%, 8%, 0)
+            scale(.94);
+    }
+
+    100% {
+        transform:
+            translate3d(5%, -5%, 0)
+            scale(1.06);
+    }
+}
+
+
+/* =========================================================
+   SKULL
+   ========================================================= */
+
+.hero-skull {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: min(42vw, 420px);
+
+    transform: translate(-50%, -50%);
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+.hero-skull img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(0 0 18px rgba(255,255,255,.20))
+        drop-shadow(0 20px 45px rgba(0,0,0,.65));
+
+    animation: skullFloat 7s ease-in-out infinite;
+}
+
+
+/* Very subtle floating movement */
+
+@keyframes skullFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+/* =========================================================
+   KEEP HERO CONTENT ABOVE EVERYTHING
+   ========================================================= */
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+}
