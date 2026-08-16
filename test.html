@@ -129,20 +129,99 @@ function draw(t){
   const angle = (t * 0.00004) % (Math.PI*2);
   const dx = Math.cos(angle)*w, dy = Math.sin(angle)*h;
   const metal = maskCtx.createLinearGradient(w/2-dx, h/2-dy, w/2+dx, h/2+dy);
-  metal.addColorStop(0.00,'#f8f8fa');
-  metal.addColorStop(0.10,'#c3c7d4');
-  metal.addColorStop(0.22,'#5a5f75');
-  metal.addColorStop(0.34,'#171a28');
-  metal.addColorStop(0.44,'#f0f1f4');
-  metal.addColorStop(0.50,'#0c0e18');
-  metal.addColorStop(0.56,'#f0f1f4');
-  metal.addColorStop(0.66,'#171a28');
-  metal.addColorStop(0.78,'#5a5f75');
-  metal.addColorStop(0.90,'#c3c7d4');
-  metal.addColorStop(1.00,'#f8f8fa');
+  metal.addColorStop(0.00,'#050608');
+  metal.addColorStop(0.08,'#171a22');
+  metal.addColorStop(0.16,'#8c93a2');
+  metal.addColorStop(0.22,'#e8eaf0');
+  metal.addColorStop(0.27,'#343946');
+  metal.addColorStop(0.34,'#080a10');
+  metal.addColorStop(0.40,'#b9bec9');
+  metal.addColorStop(0.45,'#f8f9fb');
+  metal.addColorStop(0.50,'#11141d');
+  metal.addColorStop(0.56,'#596171');
+  metal.addColorStop(0.63,'#d9dce3');
+  metal.addColorStop(0.70,'#181c27');
+  metal.addColorStop(0.78,'#07090e');
+  metal.addColorStop(0.86,'#788090');
+  metal.addColorStop(0.93,'#e5e7ec');
+  metal.addColorStop(1.00,'#090b10');
   maskCtx.fillStyle = metal;
   maskCtx.fillRect(0,0,w,h);
   ctx.drawImage(maskCanvas, 0, 0);
+
+// 5a) liquid surface distortion / reflection bands
+
+  const liquid = document.createElement('canvas');
+  liquid.width = w;
+  liquid.height = h;
+
+  const liquidCtx = liquid.getContext('2d');
+
+  liquidCtx.drawImage(silhouette, 0, 0);
+
+  liquidCtx.globalCompositeOperation = 'source-atop';
+
+  const waveTime = t * 0.00045;
+
+  const waveGradient = liquidCtx.createLinearGradient(
+      0,
+      h * (0.15 + Math.sin(waveTime) * 0.08),
+      w,
+      h * (0.85 + Math.cos(waveTime * 1.3) * 0.08)
+  );
+
+  waveGradient.addColorStop(0.00, 'rgba(255,255,255,0)');
+  waveGradient.addColorStop(0.16, 'rgba(255,255,255,0.10)');
+  waveGradient.addColorStop(0.23, 'rgba(255,255,255,0.32)');
+  waveGradient.addColorStop(0.28, 'rgba(255,255,255,0.02)');
+  waveGradient.addColorStop(0.42, 'rgba(0,0,0,0.30)');
+  waveGradient.addColorStop(0.50, 'rgba(255,255,255,0.20)');
+  waveGradient.addColorStop(0.58, 'rgba(255,255,255,0.02)');
+  waveGradient.addColorStop(0.73, 'rgba(0,0,0,0.25)');
+  waveGradient.addColorStop(0.82, 'rgba(255,255,255,0.25)');
+  waveGradient.addColorStop(0.90, 'rgba(255,255,255,0.04)');
+  waveGradient.addColorStop(1.00, 'rgba(255,255,255,0)');
+
+  liquidCtx.fillStyle = waveGradient;
+  liquidCtx.fillRect(0,0,w,h);
+
+  liquidCtx.globalCompositeOperation = 'overlay';
+  liquidCtx.filter = 'blur(5px)';
+
+  ctx.globalAlpha = 0.75;
+  ctx.drawImage(liquid, 0, 0);
+
+  ctx.globalAlpha = 1;
+  ctx.filter = 'none';
+  
+  const navyGlow = ctx.createRadialGradient(
+    w * 0.68,
+    h * 0.35,
+    0,
+    w * 0.68,
+    h * 0.35,
+    Math.min(w,h) * 0.65
+  );
+
+  navyGlow.addColorStop(0, 'rgba(45,65,110,0.22)');
+  navyGlow.addColorStop(0.35, 'rgba(25,40,75,0.10)');
+  navyGlow.addColorStop(1, 'rgba(0,0,0,0)');
+
+  const navyLayer = document.createElement('canvas');
+  navyLayer.width = w;
+  navyLayer.height = h;
+
+  const navyCtx = navyLayer.getContext('2d');
+
+  navyCtx.drawImage(silhouette,0,0);
+  navyCtx.globalCompositeOperation = 'source-atop';
+  navyCtx.fillStyle = navyGlow;
+  navyCtx.fillRect(0,0,w,h);
+
+  ctx.globalCompositeOperation = 'screen';
+  ctx.globalAlpha = 0.65;
+  ctx.drawImage(navyLayer,0,0);
+  ctx.globalAlpha = 1;
 
   // 5b) rim light — bright thin edge ring, classic metal fresnel look
   const inner = document.createElement('canvas');
