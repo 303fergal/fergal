@@ -2,12 +2,12 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Test Liquid Metal Final v4</title>
+<title>Test Liquid Metal Final v5</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background:#050609; height:100vh; overflow:hidden; }
   #heroTest { position:relative; width:100%; height:100vh; overflow:hidden; }
-  #liquidMetalBg { position:absolute; inset:0; }
+  #liquidMetalCanvas { position:absolute; inset:0; width:100%; height:100%; }
   .status { position:fixed; top:10px; left:10px; color:#fff; background:#000; padding:6px 10px; font-family:monospace; font-size:11px; z-index:20; }
 
   .glass-shard{
@@ -33,7 +33,7 @@
 <body>
 
 <div id="heroTest">
-  <div id="liquidMetalBg"></div>
+  <canvas id="liquidMetalCanvas"></canvas>
   <div class="glass-shard gs1"></div>
   <div class="glass-shard gs2"></div>
   <div class="glass-shard gs3"></div>
@@ -44,30 +44,27 @@
 
 <script type="module">
   const status = document.getElementById('status');
-  const box = document.getElementById('liquidMetalBg');
+  const canvas = document.getElementById('liquidMetalCanvas');
   try {
-    const {
-      ShaderMount,
-      liquidMetalFragmentShader,
-      LiquidMetalShapes,
-      getShaderColorFromString
-    } = await import('https://cdn.jsdelivr.net/npm/@paper-design/shaders/+esm');
+    const { createShader } = await import('https://cdn.jsdelivr.net/npm/@paper-design/shaders/+esm');
 
-    new ShaderMount(box, liquidMetalFragmentShader, {
-      u_colorBack: getShaderColorFromString('#0b0f1e'),
-      u_colorTint: getShaderColorFromString('#c8ccd6'),
-      u_repetition: 5,
-      u_shiftRed: 0.05,
-      u_shiftBlue: -0.05,
-      u_contour: 0.5,
-      u_softness: 0.25,
-      u_distortion: 0.12,
-      u_angle: 70,
-      u_shape: LiquidMetalShapes.metaballs,
-      u_isImage: false
+    const shader = createShader(canvas, {
+      type: 'liquid-metal',
+      colorBack: '#0b0f1e',
+      colorTint: '#c8ccd6',
+      shape: 'metaballs',
+      repetition: 5,
+      softness: 0.25,
+      distortion: 0.12,
+      contour: 0.5,
+      shiftRed: 0.05,
+      shiftBlue: -0.05,
+      angle: 70,
+      speed: 1
     });
+    shader.start();
 
-    status.textContent = 'BERHASIL LOAD — perhatikan 5-10 detik, jangan langsung screenshot';
+    status.textContent = 'BERHASIL LOAD + START';
   } catch (err) {
     status.textContent = 'ERROR: ' + err.message;
     console.error(err);
