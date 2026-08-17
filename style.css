@@ -1899,3 +1899,41 @@ section:not(.hero) {
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
 }
+
+/* =========================================
+   SMOOTH HERO → HOME TRANSITION
+   ========================================= */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fade + blur at the bottom of Hero */
+.hero::after {
+  content: "";
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -1px;
+
+  height: 28%;
+
+  z-index: 10;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.12) 25%,
+      rgba(0, 0, 0, 0.38) 55%,
+      rgba(0, 0, 0, 0.72) 78%,
+      rgba(0, 0, 0, 0.90) 100%
+    );
+
+  filter: blur(12px);
+  transform: translateY(8px);
+}
