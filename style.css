@@ -1995,3 +1995,12 @@ section:not(.hero) {
 
   background: rgba(0, 0, 0, 0.90) !important;
 }
+
+#unit {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.site-footer {
+  margin-top: 0 !important;
+}
