@@ -1880,20 +1880,24 @@ section{
 
 }
 
+
 /* =========================================
-   DARK SMOKED GLASS LAYER
-   HOME → FOOTER
+   UNIFIED DARK ATMOSPHERE
+   HERO → FOOTER
    ========================================= */
 
+.hero,
 section:not(.hero) {
   position: relative;
-  z-index: 2;
+}
 
+/* Semua section mendapat treatment hitam yang sama */
+section:not(.hero) {
   background:
     linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.52),
-      rgba(0, 0, 0, 0.64)
+      rgba(0, 0, 0, 0.58),
+      rgba(0, 0, 0, 0.58)
     );
 
   backdrop-filter: blur(3px);
@@ -1901,39 +1905,37 @@ section:not(.hero) {
 }
 
 /* =========================================
-   SMOOTH HERO → HOME TRANSITION
+   HERO → HOME SEAMLESS FADE
    ========================================= */
 
 .hero {
   position: relative;
+  z-index: 2;
   overflow: hidden;
 }
 
-/* Fade + blur at the bottom of Hero */
 .hero::after {
   content: "";
-  position: absolute;
 
+  position: absolute;
   left: 0;
   right: 0;
-  bottom: -1px;
+  bottom: -30px;
 
-  height: 28%;
-
-  z-index: 10;
+  height: 180px;
 
   pointer-events: none;
 
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.12) 25%,
-      rgba(0, 0, 0, 0.38) 55%,
-      rgba(0, 0, 0, 0.72) 78%,
-      rgba(0, 0, 0, 0.90) 100%
-    );
+  z-index: 20;
 
-  filter: blur(12px);
-  transform: translateY(8px);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.12) 25%,
+    rgba(0, 0, 0, 0.30) 50%,
+    rgba(0, 0, 0, 0.46) 75%,
+    rgba(0, 0, 0, 0.58) 100%
+  );
+
+  filter: blur(18px);
 }
