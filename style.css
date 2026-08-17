@@ -1914,39 +1914,22 @@ section:not(.hero) {
   overflow: hidden;
 }
 
-.hero::after {
+.site-background::after {
   content: "";
-
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -30px;
-
-  height: 180px;
+  inset: 0;
 
   pointer-events: none;
 
-  z-index: 20;
+  z-index: 2;
 
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.12) 25%,
-    rgba(0, 0, 0, 0.30) 50%,
-    rgba(0, 0, 0, 0.46) 75%,
-    rgba(0, 0, 0, 0.58) 100%
-  );
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,.70),
+      rgba(0,0,0,.70)
+    );
 
-  filter: blur(18px);
-}
-
-/* TEST — REMOVE OLD SECTION BACKGROUNDS */
-
-section:not(.hero),
-section:not(.hero) .section-bg,
-section:not(.hero) .bg-brushed,
-section:not(.hero) .bg-burst,
-section:not(.hero) .shared {
-  background: transparent !important;
-  background-image: none !important;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
