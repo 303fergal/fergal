@@ -1879,3 +1879,23 @@ section{
   }
 
 }
+
+/* =========================================
+   DARK SMOKED GLASS LAYER
+   HOME → FOOTER
+   ========================================= */
+
+section:not(.hero) {
+  position: relative;
+  z-index: 2;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.52),
+      rgba(0, 0, 0, 0.64)
+    );
+
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
