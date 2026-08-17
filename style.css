@@ -1924,11 +1924,13 @@ section:not(.hero) {
   z-index: 2;
 
   background:
-    linear-gradient(
-      to bottom,
-      rgba(0,0,0,.70),
-      rgba(0,0,0,.70)
-    );
+  linear-gradient(
+    to bottom,
+    rgba(0,0,0,.70) 0%,
+    rgba(0,0,0,.70) 55%,
+    rgba(0,0,0,.78) 75%,
+    rgba(0,0,0,.90) 100%
+  );
 
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
