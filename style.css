@@ -2030,3 +2030,12 @@ section:not(.hero) {
 .site-footer {
   margin-top: 0 !important;
 }
+
+.site-liquid-stage {
+  z-index: 2 !important;
+  opacity: 1 !important;
+}
+
+.site-liquid-blob {
+  opacity: 1 !important;
+}
