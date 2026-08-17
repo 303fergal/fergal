@@ -1939,3 +1939,14 @@ section:not(.hero) {
 
   filter: blur(18px);
 }
+
+/* TEST — REMOVE OLD SECTION BACKGROUNDS */
+
+section:not(.hero),
+section:not(.hero) .section-bg,
+section:not(.hero) .bg-brushed,
+section:not(.hero) .bg-burst,
+section:not(.hero) .shared {
+  background: transparent !important;
+  background-image: none !important;
+}
