@@ -2040,48 +2040,30 @@ section:not(.hero) {
   opacity: 1 !important;
 }
 
-
-.locked-box {
-  position: relative;
-  width: 100%;
-  margin-top: 45px;
-  padding: 30px;
-  overflow: hidden;
-  border:
-    1px solid rgba(255,255,255,.12);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.065),
-      rgba(255,255,255,.018)
-    );
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+.locked-box{
+  margin: 18px 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--hairline);
 }
-
-
-.locked-box::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 1px;
-  background:
-    rgba(255,255,255,.55);
-}
-
-
-.locked-title {
-  margin-bottom: 18px;
-  color: #858585;
+.locked-title{
+  font-family:'IBM Plex Mono', monospace;
   font-size: 11px;
-  letter-spacing: .2em;
+  letter-spacing: .14em;
   text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
 }
-
-.locked-values {
+.locked-values{
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+.locked-values .value{
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 100px;
+  padding: 6px 14px;
 }
